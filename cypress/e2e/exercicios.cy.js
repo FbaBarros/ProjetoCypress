@@ -59,7 +59,7 @@ describe('Fluxo Login alternativo', () => {
       cy.get('.header__message').click();
       cy.login('ana@email.com','Senha123')
     })
-})*/
+})
 
 describe('Testes Página Home', () => {
   beforeEach(() => {
@@ -71,3 +71,46 @@ describe('Testes Página Home', () => {
     cy.get('.cards').should('be.visible');
   })
 })
+
+describe('Testes exemplos Cypress', () => {
+  beforeEach(() => {
+      cy.visit('https://example.cypress.io/todo')
+  })
+
+  it('Valida se consegue deletar todas as tarefas', () => {
+    cy.get(':nth-child(1) > .view > .toggle').click();
+    cy.get(':nth-child(2) > .view > .toggle').click();
+    cy.contains('Clear completed').click()    
+    cy.contains('Clear completed').should('not.exist')    
+  })
+
+  it('Valida filtro de tarefas', () => {  
+    cy.contains('Active').click() 
+    cy.contains('Completed').click() 
+    cy.contains('All').click() 
+  })
+
+  it('Para filtrar tarefas completas', () => {
+    cy.get(':nth-child(1) > .view > .toggle').click();
+    cy.contains('Completed').click()
+
+    cy.get('.todo-list li')
+      .should('have.length', 1)
+      .first()
+      .should('have.text', 'Pay electric bill')
+
+    cy.contains('Walk the dog').should('not.exist')
+    })
+    
+    it('Para filtrar tarefas completas', () => {
+      cy.get(':nth-child(2) > .view > .toggle').click(); 
+      cy.contains('Completed').click()
+
+      cy.get('.todo-list li')
+        .should('have.length', 1)
+        .first()
+        .should('have.text', 'Pay electric bill')
+
+      cy.contains('Walk the dog').should('not.exist')
+   })
+})*/
