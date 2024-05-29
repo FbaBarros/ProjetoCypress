@@ -1,0 +1,6 @@
+*.txt
+*.tmp
+/.env
+/logs/
+*.tmp
+node_modules/
